@@ -7,15 +7,23 @@ def cmp(a: int, b: int) -> int:
     return (a > b) - (a < b)
 
 
-def length(ride: tuple) -> int:
-    a, b = ride[START]
-    x, y = ride[END]
+def length(start: tuple, end: tuple) -> int:
+    a, b = start
+    x, y = end
     return abs(x - a) + abs(y - b)
+
+
+def ride_length(ride: tuple) -> int:
+    return length(ride[START], ride[END])
+
+
+def available(start: tuple, start_time: int, end: tuple, end_time: int):
+    return length(start, end) < end_time - start_time
 
 
 def get_current_ride(rides: list, time: int) -> tuple:
     for ride in rides:
-        ride_len = length(ride)
+        ride_len = ride_length(ride)
         time -= ride_len
         if time < 0:
             return ride

@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*- #
-# from scoring import score  # flake8: noqa
+from scoring import score  # flake8: noqa
 from utils import get_current_ride, move_car
 
 
