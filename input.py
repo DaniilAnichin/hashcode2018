@@ -1,25 +1,16 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*- #
+from utils import Ride, get_horosh0, Point
 
-R, C, F, N, B, T = list(map(int, input().split(' ')))
 
-rides = []
+if __name__ == '__main__':
+    R, C, F, N, B, T = list(map(int, input().split(' ')))
 
-class Ride:
-    def __init__(self, a, b, x, y, s, f):
-        self.a = a
-        self.b = b
-        self.x = x
-        self.y = y
-        self.s = s
-        self.f = f
-    def distance(self):
-        return abs(self.x - self.a) + abs(self.y - self.b)
-    def max_time(self):
-        return self.f - self.s
-
-for i in range(N):
-     a, b, x, y, s, f = list(map(int, input().split(' ')))
-     ride = Ride(a,b,x,y,s,f)
-     if ride.distance() <= ride.max_time():
-         rides.append(ride)
-
- 
+    rides = []
+    for i in range(N):
+        a, b, x, y, s, f = list(map(int, input().split(' ')))
+        ride = Ride(a, b, x, y, s, f)
+        rides.append(ride)
+    print('That\'s all, folks')
+    for ride in rides:
+        print(get_horosh0(ride, B, 0, Point(0, 0)))
