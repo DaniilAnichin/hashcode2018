@@ -47,7 +47,7 @@ def ride_length(ride: Ride) -> int:
 
 
 def available(start: Point, start_time: int, end: Point, end_time: int):
-    return length(start, end) <= end_time - start_time
+    return abs(start - end) <= end_time - start_time
 
 
 def get_current_ride(rides: list, time: int) -> tuple:
