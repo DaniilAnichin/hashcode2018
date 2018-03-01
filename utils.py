@@ -1,8 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*- #
 
-from input import b
-
 
 def cmp(a: int, b: int) -> int:
     return (a > b) - (a < b)
@@ -49,7 +47,7 @@ def ride_length(ride: Ride) -> int:
 
 
 def available(start: Point, start_time: int, end: Point, end_time: int):
-    return length(start, end) <= end_time - start_time
+    return abs(start - end) <= end_time - start_time
 
 
 def get_current_ride(rides: list, time: int) -> tuple:
@@ -72,14 +70,14 @@ def move_car(position: Point, ride: Ride) -> Point:
     return position
 
 
-def get_horosh0(ride: Ride, t, pos: Point):
+def get_horosh0(ride: Ride, bonus: int, t: int, pos: Point):
     points = ride_length(ride)
     dfn = length(ride.start, pos)
     if dfn + t + points > ride.t2:
         return 0
     punish = 0
     if dfn + t <= ride.t1:
-        points += b
+        points += bonus
         punish = ride.t1 - (dfn + t)
     horosh_val = points / float(points + dfn + punish)
     return horosh_val
