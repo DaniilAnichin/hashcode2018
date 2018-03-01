@@ -83,3 +83,25 @@ def get_horosh0(ride: Ride, t, pos: Point):
         punish = ride.t1 - (dfn + t)
     horosh_val = points / float(points + dfn + punish)
     return horosh_val
+
+
+def find_closest(rides: list, p: Point, t):
+    s_rides = rides.sort(key=lambda ride: -(len(p - ride.start) + (ride.t1 - (len(ride.start - p) + t))
+                                            if((ride.t1 - (len(ride.start - p) + t)) > 0) else
+                                            0 / (ride.t2 - len(ride) > len(ride.start - p) + t)))
+    return s_rides[:20]
+
+
+def get_horosh1(ride: Ride, rides: list, t, pos: Point):
+    cr = find_closest()
+    points = ride_length(ride)
+    dfn = length(ride.start, pos)
+    if dfn + t + points > ride.t2:
+        return 0
+    punish = 0
+    if dfn + t <= ride.t1:
+        points += b
+        punish = ride.t1 - (dfn + t)
+    horosh_val = points / float(points + dfn + punish)
+
+    return horosh_val
