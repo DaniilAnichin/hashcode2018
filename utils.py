@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*- #
 
+from input import b
+
 
 def cmp(a: int, b: int) -> int:
     return (a > b) - (a < b)
@@ -68,3 +70,16 @@ def move_car(position: Point, ride: Ride) -> Point:
     elif position.y != ride.end.y:
         position -= Point(0, cmp(position.y, ride.end.y))
     return position
+
+
+def get_horosh0(ride: Ride, t, pos: Point):
+    points = ride_length(ride)
+    dfn = length(ride.start, pos)
+    if dfn + t + points > ride.t2:
+        return 0
+    punish = 0
+    if dfn + t <= ride.t1:
+        points += b
+        punish = ride.t1 - (dfn + t)
+    horosh_val = points / float(points + dfn + punish)
+    return horosh_val
