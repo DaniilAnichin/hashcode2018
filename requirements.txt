@@ -1,1 +1,2 @@
 ipython==6.2.1
+munkres==1.0.12
